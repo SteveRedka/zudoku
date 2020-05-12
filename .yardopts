@@ -1,0 +1,5 @@
+# @markup markdown
+# @title Sudoku gem
+# @author Steve Redka
+
+--no-private lib/**/*.rb - README.md
