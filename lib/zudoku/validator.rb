@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Sudoku
+module Zudoku
   # validations
   #
   module Validator

@@ -2,10 +2,11 @@
 
 require 'spec_helper'
 require 'fixtures/sudoku_samples'
+require 'pry'
 
-describe Sudoku::Sudoku do
-  let!(:input) { Sudoku::Samples::ONE_SOLUTION }
-  let!(:sudoku) { Sudoku::Sudoku.new(input) }
+describe Zudoku::Sudoku do
+  let!(:input) { Zudoku::Samples::ONE_SOLUTION }
+  let!(:sudoku) { Zudoku::Sudoku.new(input) }
 
   it 'initializes board' do
     expect(sudoku.board).to be_an Array
@@ -59,7 +60,7 @@ describe Sudoku::Sudoku do
 
   describe '#valid?' do
     it 'returns false with impossible board' do
-      impossible_sudoku = Sudoku::Sudoku.new(input)
+      impossible_sudoku = Zudoku::Sudoku.new(input)
       impossible_sudoku.board = [['9'] * 9] * 9
       impossible_sudoku.board[0][0] = '_'
       expect(impossible_sudoku.valid?).to be false
@@ -69,7 +70,7 @@ describe Sudoku::Sudoku do
   describe '#solve!' do
     context 'impossible' do
       it 'returns :impossible' do
-        impossible_sudoku = Sudoku::Sudoku.new(input)
+        impossible_sudoku = Zudoku::Sudoku.new(input)
         impossible_sudoku.board = [['9'] * 9] * 9
         impossible_sudoku.board[0][0] = '_'
         expect(impossible_sudoku.solve!).to eq :impossible
@@ -82,10 +83,19 @@ describe Sudoku::Sudoku do
     end
 
     it 'solves a puzzle with multiple solutions' do
-      sudoku = Sudoku::Sudoku.new(Sudoku::Samples::MULTIPLE_SOLUTIONS)
+      sudoku = Zudoku::Sudoku.new(Zudoku::Samples::MULTIPLE_SOLUTIONS)
       sudoku.solve!
       expect(sudoku.status).to eq :multiple_solutions
       expect(sudoku.solutions.count).to eq 3
+    end
+  end
+
+  describe 'solutions' do
+    it 'returns Zudoku::Solution instances' do
+      sudoku = Zudoku::Sudoku.new(Zudoku::Samples::MULTIPLE_SOLUTIONS)
+      sudoku.solve!
+      expect(sudoku.solutions[0]).to be_a Zudoku::Solution
+      expect(sudoku.solutions[0].to_s).to include('+-------+-------+-------+')
     end
   end
 end

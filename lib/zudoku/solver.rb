@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-module Sudoku
+require 'zudoku/solution'
+
+module Zudoku
   # Solver functions
   #
   # Files in this class are extracted for convenience, although they are closely tied to main [Sudoku::Sudoku] class.
@@ -26,9 +28,10 @@ module Sudoku
           @status = @solutions.length > 0 ? :multiple_solutions : :impossible
         else
           @status = :solved
-          @solutions << @board
+          @solutions << Solution.new(@board)
         end
       end
+      @status == :solved if @solutions.count == 1 && @status == :multiple_solutions
       @status
     end
 

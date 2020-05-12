@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Sudoku
+module Zudoku
   # Class with functions related to parsing sudokus
   module Reader
     # turn input into array of arrays

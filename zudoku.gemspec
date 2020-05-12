@@ -1,11 +1,11 @@
 Gem::Specification.new do |s|
-  s.name = %q{sudoku}
+  s.name = %q{Zudoku}
   s.author = 'Steve Redka'
-  s.version = "0.0.0"
+  s.version = "0.1.0"
   s.date = %q{2020-12-05}
-  s.summary = %q{sudoku solver gem}
+  s.summary = %q{Sudoku solver gem}
   s.files = [
-    "lib/sudoku.rb"
+    "lib/zudoku.rb"
   ]
   s.require_paths = ["lib"]
 

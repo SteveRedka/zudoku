@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-require 'sudoku/reader'
-require 'sudoku/validator'
-require 'sudoku/solver'
+require 'zudoku/reader'
+require 'zudoku/validator'
+require 'zudoku/solver'
+require 'zudoku/solution'
 
-module Sudoku
+module Zudoku
   # Main sudoku class. Ideally only represents sudoku data without solution and reading logic
   #
   class Sudoku

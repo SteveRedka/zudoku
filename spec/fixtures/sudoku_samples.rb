@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Sudoku
+module Zudoku
   # Sample sudoku puzzles for tests
   module Samples
     ONE_SOLUTION = '''

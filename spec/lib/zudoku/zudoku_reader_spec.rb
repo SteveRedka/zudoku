@@ -3,9 +3,9 @@
 require 'spec_helper'
 require 'fixtures/sudoku_samples'
 
-describe Sudoku::Reader do
+describe Zudoku::Reader do
   it 'parses default format' do
-    parsed = subject.read_sudoku(Sudoku::Samples::ONE_SOLUTION)
+    parsed = subject.read_sudoku(Zudoku::Samples::ONE_SOLUTION)
     expect(parsed).to be_an Array
     expect(parsed.length).to be 9
     parsed.each do |row|
@@ -15,7 +15,7 @@ describe Sudoku::Reader do
   end
 
   it 'reads minimalist input' do
-    parsed = subject.read_sudoku(Sudoku::Samples::MINIMALIST_INPUT)
+    parsed = subject.read_sudoku(Zudoku::Samples::MINIMALIST_INPUT)
     expect(parsed).to be_an Array
     expect(parsed.length).to be 9
     parsed.each do |row|
