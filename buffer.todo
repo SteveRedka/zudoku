@@ -1,0 +1,53 @@
+
+input =  Sudoku::Reader.read_sudoku(raw)
+
+def fill_rows(sudoku)
+  updated = true
+  while updated do
+    updated = false
+    result = sudoku
+    sudoku.each_with_index do |row, i|
+      row.each_with_index do |cell, j|
+        next unless cell == '_'
+
+        possibilities = '123456789'.split('')
+        possibilities = possibilities - get_square_neighbors(sudoku, i, j) - get_column_neighbors(sudoku, i, j)
+        if possibilities.length == 1
+          p result[i][j]
+          result[i][j] = possibilities[0]
+            p result[i][j]
+          updated = true
+          p result
+        end
+      end
+    end
+  end
+  result
+end
+
+def get_column_neighbors(sudoku, x, y)
+  result = []
+  sudoku.each_with_index do |row, i|
+    next if i == x
+
+    result << sudoku[i][y]
+  end
+  result.reject { |c| c == '_' }
+end
+
+def get_square_neighbors(sudoku, x, y)
+  result = []
+  sudoku.each_with_index do |row, i|
+    row.each_with_index do |cell, j|
+      next if [i, j] == [x, y]
+      result << cell if get_square_id(i, j) == get_square_id(x, y)
+    end
+  end
+  result.reject { |c| c == '_' }
+end
+
+def get_square_id(x, y)
+  [x / 3, y / 3]
+end
+
+# p fill_rows(input)

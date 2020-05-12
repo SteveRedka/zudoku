@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Sudoku::Reader do
+describe Sudoku::Sudoku do
   let!(:input) { '''
     +-------+-------+-------+
     | _ 6 _ | 1 _ 4 | _ 5 _ |
@@ -17,13 +17,18 @@ describe Sudoku::Reader do
     +-------+-------+-------+
     '''
   }
+  let!(:sudoku) { Sudoku::Sudoku.new(input) }
 
-  it 'parses default format' do
-    parsed = subject.read_sudoku(input)
-    expect(parsed).to be_an Array
-    parsed.each do |row|
+  it 'initializes board' do
+    expect(sudoku.board).to be_an Array
+    sudoku.board.each do |row|
       expect(row).to be_an Array
       expect(row.length).to be 9
     end
+  end
+
+  it 'initializes possibilities' do
+    expect(sudoku.possibilities).to be_an Array
+    expect(sudoku.possibilities[0][0]).to eq %w(1 2 3 4 5 6 7 8 9)
   end
 end

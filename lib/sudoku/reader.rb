@@ -3,12 +3,11 @@
 module Sudoku
   module Reader
     def self.read_sudoku(str)
-      str = str.strip
       rows = str.split("\n")
-      rows.select! do |row|
-        row[0] == '|'
+      normal_rows = rows.select do |row|
+        row.strip[0] == '|'
       end
-      rows.map do |row|
+      normal_rows.map do |row|
         row.split(' ').select { |col| col.match(/_|\d/) }
       end
     end
